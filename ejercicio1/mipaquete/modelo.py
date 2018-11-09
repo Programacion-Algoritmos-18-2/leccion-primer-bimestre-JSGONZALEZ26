@@ -44,7 +44,7 @@ class Empleado(object):
 
 #	def setSueldoFijo(self, m):
 #		self.sueldoFijo = m
-#
+
 #	def getSueldoFijo(self):
 #		return self.sueldoFijo
 
@@ -54,17 +54,37 @@ class Empleado(object):
 #	def getDescuentoSeguro(self):
 #		return self.descuentoSeguro
 
-#	def calcularSueldoFinal(self, a= getSueldoFijo(), b = getDescuentoSeguro()):
+#	def calcularSueldoFinal(self, self.getSueldoFijo(), self.DescuentoSeguro()):
 #		sueldo = a-b
 #		return sueldo 
 
 
-#class EmpleadoPorHoras(Empleado):
+class EmpleadoPorHoras(Empleado):
+#Constructor De la clase Hija
+	def __init__(self):
+		super(EmpleadoPorHoras, self).__init__()
+		self.numeroHoras = 0
+		self.valorHora = 0.0
+# Getters & Setters
+	def setNumeroHoras(self, n):
+		self.numeroHoras = n
 
-#	def __init__(self):
-#		super(Empleado, self).__init__()
-#		self.numeroHoras = 0
-#		self.valorHora = 0.0
+	def getNumeroHoras(self):
+		return self.numeroHoras
+
+	def setValorHora(self, m):
+		self.valorHora = m
+
+	def getValorHora(self):
+		return self.valorHora
+#Calculo de Sueldo
+	def calcularSueldoFinal(self):		
+		sueldoHoras = (self.numeroHoras*self.valorHora)+self.comision_fija	
+		return sueldoHoras
+
+	def presentarDatos(self):
+		cadena = "%s\n\tNumero de Horas: %s\n\tValor por Hora: %s\n\tSueldo Final: %s" % (super(EmpleadoPorHoras, self).presentarDatos(), self.getNumeroHoras(), self.getValorHora(), self.calcularSueldoFinal()) 
+		return cadena
 
 #class EmpleadoPorSemana(Empleado):
 
