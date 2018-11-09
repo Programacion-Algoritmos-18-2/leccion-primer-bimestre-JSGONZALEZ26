@@ -18,6 +18,7 @@ f.setApellido("Andrade")
 f.setCedula("112233")
 f.setNumeroHoras(15)
 f.setValorHora(20.2)
+f.setComisionFija(10)
 print(f.presentarDatos())
 
 #Nuevo Objeto
