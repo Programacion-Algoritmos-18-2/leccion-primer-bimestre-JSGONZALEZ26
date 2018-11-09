@@ -32,35 +32,39 @@ class Empleado(object):
 		return self.comision_fija
 #Presentando Datos
 	def presentarDatos(self):
-		cadena = "Informacion de %s %s\n\tCedula: %s" % (self.getNombre(), self.getApellido(), self.getCedula())
+		cadena = "Informacion de %s %s\n\tCedula: %s\n" % (self.getNombre(), self.getApellido(), self.getCedula())
 		return cadena
 
-#class EmpleadoFijo(Empleado):
+class EmpleadoFijo(Empleado):
+#Constructor de la clase hija
+	def __init__(self):
+		super(EmpleadoFijo, self).__init__()
+		self.sueldoFijo = 0.0
+		self.descuentoSeguro = 0.0
 
-#	def __init__(self):
-#		super(Empleado, self).__init__()
-#		self.sueldoFijo = 0.0
-#		self.descuentoSeguro = 0.0
+	def setSueldoFijo(self, m):
+		self.sueldoFijo = m
 
-#	def setSueldoFijo(self, m):
-#		self.sueldoFijo = m
+	def getSueldoFijo(self):
+		return self.sueldoFijo
 
-#	def getSueldoFijo(self):
-#		return self.sueldoFijo
+	def setDescuentoSeguro(self, n):
+		self.descuentoSeguro = n
 
-#	def setDescuentoSeguro(self, n):
-#		self.descuentoSeguro = n
+	def getDescuentoSeguro(self):
+		return self.descuentoSeguro
 
-#	def getDescuentoSeguro(self):
-#		return self.descuentoSeguro
+	def calcularSueldoFinal(self):
+		sueldo = self.sueldoFijo -((self.sueldoFijo/100) * self.descuentoSeguro)+self.comision_fija
+		return sueldo 
 
-#	def calcularSueldoFinal(self, self.getSueldoFijo(), self.DescuentoSeguro()):
-#		sueldo = a-b
-#		return sueldo 
+	def presentarDatos(self):
+		cadena = "%s\n\tSueldo Fijo: %s\n\tComision Fija: %s\n\tSueldo Final: %s\n" % (super(EmpleadoFijo, self).presentarDatos(), self.getSueldoFijo(), self.getComisionFija(), self.calcularSueldoFinal()) 
+		return cadena
 
 
 class EmpleadoPorHoras(Empleado):
-#Constructor De la clase Hija
+#Constructor de la clase Hija
 	def __init__(self):
 		super(EmpleadoPorHoras, self).__init__()
 		self.numeroHoras = 0
@@ -83,12 +87,32 @@ class EmpleadoPorHoras(Empleado):
 		return sueldoHoras
 
 	def presentarDatos(self):
-		cadena = "%s\n\tNumero de Horas: %s\n\tValor por Hora: %s\n\tSueldo Final: %s" % (super(EmpleadoPorHoras, self).presentarDatos(), self.getNumeroHoras(), self.getValorHora(), self.calcularSueldoFinal()) 
+		cadena = "%s\n\tNumero de Horas: %s\n\tValor por Hora: %s\n\tSueldo Final: %s\n" % (super(EmpleadoPorHoras, self).presentarDatos(), self.getNumeroHoras(), self.getValorHora(), self.calcularSueldoFinal()) 
 		return cadena
 
-#class EmpleadoPorSemana(Empleado):
+class EmpleadoPorSemana(Empleado):
 
-#	def __init__(self):
-#		super(Empleado, self).__init__()
-#		self.numeroSemanas = 0
-#		self.valorSemanal = 0.0
+	def __init__(self):
+		super(EmpleadoPorSemana, self).__init__()
+		self.numeroSemanas = 0
+		self.valorSemanal = 0.0
+
+	def setNumeroSemanas(self, n):
+		self.numeroSemanas = n
+
+	def getNumeroSemanas(self):
+		return self.numeroSemanas
+
+	def setValorSemanal(self, m):
+		self.valorSemanal = m
+
+	def getValorSemana(self):
+		return self.valorSemanal
+
+	def calcularSueldoFinal(self):		
+		sueldoHoras = (self.numeroSemanas*self.valorSemanal)+self.comision_fija	
+		return sueldoHoras
+
+	def presentarDatos(self):
+		cadena = "%s\n\tNumero de Semanas: %s\n\tValor por Semana: %s\n\tSueldo Final: %s\n" % (super(EmpleadoPorSemana, self).presentarDatos(), self.getNumeroSemanas(), self.getValorSemana(), self.calcularSueldoFinal()) 
+		return cadena
